@@ -20,18 +20,25 @@ const getUser = async (req,res) => {
 
 const createUser = async (req,res) => {
     try {
-        const { nome, email, senha, data_cadastro } = req.body;
-        const newUser = await userModel.createUser(nome, email, senha, data_cadastro);
+        const { nome, email, senha } = req.body;
+        
+        // Validações básicas
+        if (!nome || !email || !senha) {
+            return res.status(400).json({ message: "Nome, email e senha são obrigatórios" });
+        }
+
+        const newUser = await userModel.createUser(nome, email, senha);
         res.status(201).json(newUser);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao criar usuário" });
+        console.error('Erro ao criar usuário:', error.message);
+        res.status(500).json({ message: error.message || "Erro ao criar usuário" });
     }
 };
 
 const updateUser = async (req,res) => {
     try {
-        const { nome, email, senha, data_cadastro } = req.body;
-        const updatedUser = await userModel.updateUser(req.params.id, nome, email, senha, data_cadastro);
+        const { nome, email, senha } = req.body;
+        const updatedUser = await userModel.updateUser(req.params.id, nome, email, senha);
         if (!updatedUser) {
             return res.status(404).json({ message: "Usuário não encontrado" });
         }

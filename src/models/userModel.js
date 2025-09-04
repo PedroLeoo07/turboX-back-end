@@ -21,7 +21,7 @@ const getUser = async (id) => {
     }
 };
 
-const createUser = async (nome, email, senha, data_cadastro) => {
+const createUser = async (nome, email, senha) => {
     try {
         const existingUser = await pool.query('SELECT id FROM users WHERE email = $1', [email]);
         if (existingUser.rows.length > 0) {
@@ -29,17 +29,12 @@ const createUser = async (nome, email, senha, data_cadastro) => {
         }
 
         const insertQuery = `
-            INSERT INTO users (nome, email, senha, data_cadastro) 
-            VALUES ($1, $2, $3, $4) 
+            INSERT INTO users (nome, email, senha) 
+            VALUES ($1, $2, $3) 
             RETURNING *
         `;
         
-        const values = [
-            nome, 
-            email, 
-            senha, 
-            data_cadastro || new Date().toISOString()
-        ];
+        const values = [nome, email, senha];
 
         const result = await pool.query(insertQuery, values);
         return result.rows[0];
@@ -48,7 +43,7 @@ const createUser = async (nome, email, senha, data_cadastro) => {
     }
 };
 
-const updateUser = async (id, nome, email, senha, data_cadastro) => {
+const updateUser = async (id, nome, email, senha) => {
     try {
         const userExists = await pool.query('SELECT id FROM users WHERE id = $1', [id]);
         if (userExists.rows.length === 0) {
@@ -82,11 +77,6 @@ const updateUser = async (id, nome, email, senha, data_cadastro) => {
         if (senha) {
             updates.push(`senha = $${paramCount}`);
             values.push(senha);
-            paramCount++;
-        }
-        if (data_cadastro) {
-            updates.push(`data_cadastro = $${paramCount}`);
-            values.push(data_cadastro);
             paramCount++;
         }
 
