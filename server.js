@@ -6,6 +6,7 @@ const usersRoutes = require("./src/routes/usersRoutes");
 const carsRoutes = require("./src/routes/carsRoutes");
 const upgradesRoutes = require("./src/routes/upgradesRoutes");
 const buildsRoutes = require("./src/routes/buildsRoutes");
+const buildUpgradesRoutes = require("./src/routes/buildUpgradesRoutes");
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ app.use("/api/users", usersRoutes);
 app.use("/api/cars", carsRoutes);
 app.use("/api/upgrades", upgradesRoutes);
 app.use("/api/builds", buildsRoutes);
+app.use("/api/build-upgrades", buildUpgradesRoutes);
 
 testConnection();
 
