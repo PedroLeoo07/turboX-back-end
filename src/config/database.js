@@ -9,4 +9,14 @@ const pool = new Pool({
     port: process.env.DB_PORT
 });
 
-module.exports = pool;
+const testConnection = async () => {
+    try {
+        const client = await pool.connect();
+        console.log("✅ Conectado ao banco de dados PostgreSQL");
+        client.release();
+    } catch (error) {
+        console.error("❌ Erro ao conectar ao banco:", error.message);
+    }
+};
+
+module.exports = { pool, testConnection };
