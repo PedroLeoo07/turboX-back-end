@@ -77,4 +77,9 @@ const getCarsWithFilters = async (marca, minPotencia, maxPotencia, minPreco, max
     return result.rows;
 };
 
-module.exports = { getCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getCarsWithFilters };
+const getMarcas = async () => {
+    const result = await pool.query('SELECT DISTINCT marca FROM cars ORDER BY marca');
+    return result.rows.map(row => row.marca);
+};
+
+module.exports = { getCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getCarsWithFilters, getMarcas };

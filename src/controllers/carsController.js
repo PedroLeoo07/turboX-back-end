@@ -84,4 +84,13 @@ const getCarsByMarca = async (req, res) => {
     }
 };
 
-module.exports = { getAllCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca };
+const getMarcas = async (req, res) => {
+    try {
+        const marcas = await carModel.getMarcas();
+        res.status(200).json(marcas);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar marcas" });
+    }
+};
+
+module.exports = { getAllCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getMarcas };

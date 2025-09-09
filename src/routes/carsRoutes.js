@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getAllCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca } = require('../controllers/carsController');
+const { getAllCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getMarcas } = require('../controllers/carsController');
 
 // Rota para buscar todos os carros (com filtros opcionais via query params)
 // GET /api/cars?marca=Honda&minPotencia=200&maxPotencia=400&minPreco=50000&maxPreco=200000
 router.get('/', getAllCars);
+
+// Rota para buscar todas as marcas disponíveis
+// GET /api/cars/marcas
+router.get('/marcas', getMarcas);
 
 // Rota para buscar carros por marca
 // GET /api/cars/marca/Honda
