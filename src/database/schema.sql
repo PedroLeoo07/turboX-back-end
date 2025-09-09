@@ -116,6 +116,71 @@ INSERT INTO build_upgrades (id_build, id_upgrade) VALUES
 (9, 3), (9, 5), (9, 8),
 (10, 1), (10, 6), (10, 5), (10, 10);
 
+-- INSERTS ADICIONAIS DE USUÁRIOS
+INSERT INTO users (nome, email, senha) VALUES
+('Lucas Mendes', 'lucas.mendes@email.com', '$2b$10$hashedpassword11'),
+('Gabriela Souza', 'gabriela.souza@email.com', '$2b$10$hashedpassword12'),
+('Thiago Barbosa', 'thiago.barbosa@email.com', '$2b$10$hashedpassword13'),
+('Larissa Cardoso', 'larissa.cardoso@email.com', '$2b$10$hashedpassword14'),
+('Diego Nascimento', 'diego.nascimento@email.com', '$2b$10$hashedpassword15'),
+('Amanda Pereira', 'amanda.pereira@email.com', '$2b$10$hashedpassword16'),
+('Rodrigo Castro', 'rodrigo.castro@email.com', '$2b$10$hashedpassword17'),
+('Patricia Gomes', 'patricia.gomes@email.com', '$2b$10$hashedpassword18'),
+('Marcelo Dias', 'marcelo.dias@email.com', '$2b$10$hashedpassword19'),
+('Leticia Moura', 'leticia.moura@email.com', '$2b$10$hashedpassword20');
+
+-- INSERTS ADICIONAIS DE CARROS
+INSERT INTO cars (imagem, marca, modelo, ano, potencia, torque, peso, zero_cem, preco) VALUES
+('mitsubishi_lancer_evo.jpg', 'Mitsubishi', 'Lancer Evolution X', 2015, 291, 366, 1560, 5.4, 180000.00),
+('mazda_mx5.jpg', 'Mazda', 'MX-5 Miata', 2023, 181, 205, 1058, 6.5, 145000.00),
+('porsche_cayman.jpg', 'Porsche', 'Cayman', 2022, 300, 380, 1385, 5.1, 480000.00),
+('chevrolet_camaro_ss.jpg', 'Chevrolet', 'Camaro SS', 2023, 455, 617, 1750, 4.0, 320000.00),
+('ford_mustang_gt.jpg', 'Ford', 'Mustang GT', 2024, 450, 529, 1705, 4.3, 295000.00),
+('dodge_challenger_rt.jpg', 'Dodge', 'Challenger R/T', 2023, 375, 519, 1875, 5.1, 285000.00),
+('lotus_elise.jpg', 'Lotus', 'Elise', 2021, 220, 250, 875, 4.1, 380000.00),
+('alfa_romeo_giulia.jpg', 'Alfa Romeo', 'Giulia Quadrifoglio', 2023, 505, 600, 1655, 3.9, 450000.00),
+('jaguar_f_type.jpg', 'Jaguar', 'F-Type', 2024, 380, 460, 1597, 4.9, 520000.00),
+('mclaren_570s.jpg', 'McLaren', '570S', 2022, 562, 600, 1440, 3.2, 1200000.00);
+
+-- INSERTS ADICIONAIS DE UPGRADES
+INSERT INTO upgrades (nome, ganho_potencia, ganho_torque, custo, tipo) VALUES
+('Fuel Injectors', 35, 45, 2200.00, 'Combustível'),
+('Racing Clutch', 0, 0, 3500.00, 'Transmissão'),
+('Forged Pistons', 50, 70, 6500.00, 'Motor'),
+('Camshaft Upgrade', 45, 55, 4200.00, 'Motor'),
+('Nitrous Kit', 100, 130, 5500.00, 'Combustível'),
+('Carbon Fiber Hood', 0, 0, 8000.00, 'Carroceria'),
+('Racing Wheels', 0, 0, 4500.00, 'Rodas'),
+('Big Brake Kit', 0, 0, 6500.00, 'Freios'),
+('Roll Cage', 0, 0, 3800.00, 'Segurança'),
+('Strut Bar', 0, 0, 850.00, 'Suspensão');
+
+-- INSERTS ADICIONAIS DE BUILDS
+INSERT INTO builds (id_usuario, id_carro, potencia_final, torque_final, zero_cem_final, custo_total) VALUES
+(11, 11, 376, 486, 4.8, 12700.00),
+(12, 12, 226, 250, 6.0, 5350.00),
+(13, 13, 395, 505, 4.6, 18500.00),
+(14, 14, 555, 747, 3.5, 11000.00),
+(15, 15, 545, 659, 3.8, 14200.00),
+(16, 16, 475, 649, 4.7, 9000.00),
+(17, 17, 270, 295, 3.8, 7850.00),
+(18, 18, 625, 770, 3.4, 16500.00),
+(19, 19, 480, 590, 4.4, 13200.00),
+(20, 20, 662, 730, 2.9, 22500.00);
+
+-- INSERTS ADICIONAIS DE BUILD_UPGRADES
+INSERT INTO build_upgrades (id_build, id_upgrade) VALUES
+(11, 3), (11, 11), (11, 5),
+(12, 1), (12, 6), (12, 17),
+(13, 13), (13, 14), (13, 5), (13, 18),
+(14, 15), (14, 11), (14, 12),
+(15, 3), (15, 13), (15, 5), (15, 11),
+(16, 2), (16, 4), (16, 5), (16, 6),
+(17, 1), (17, 14), (17, 20),
+(18, 13), (18, 15), (18, 5), (18, 11), (18, 18),
+(19, 3), (19, 11), (19, 5), (19, 17),
+(20, 13), (20, 15), (20, 3), (20, 5), (20, 14);
+
 SELECT 
     c.id AS carro_id,
     c.marca,
@@ -127,4 +192,4 @@ FROM cars c
 JOIN builds ON c.id = builds.id_carro
 JOIN build_upgrades bu ON builds.id = bu.id_build
 JOIN upgrades u ON bu.id_upgrade = u.id
-WHERE u.id = 1; 
+WHERE u.id = 1;
