@@ -12,11 +12,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/users", usersRoutes);
-app.use("/api/cars", carsRoutes);
-app.use("/api/upgrades", upgradesRoutes);
-app.use("/api/builds", buildsRoutes);
-app.use("/api/build-upgrades", buildUpgradesRoutes);
+app.use("/api", usersRoutes);
+app.use("/api", carsRoutes);
+app.use("/api", upgradesRoutes);
+app.use("/api", buildsRoutes);
+app.use("/api", buildUpgradesRoutes);
 
 testConnection();
 
