@@ -20,7 +20,7 @@ router.get('/buildUpgrades/stats', getBuildUpgradeStats);
 
 // Rota para buscar upgrades mais populares
 // GET /api/build-upgrades/popular?limit=10
-router.get('/buildUpgrades/popular?limit=10', getPopularUpgrades);
+router.get('/buildUpgrades/popular', getPopularUpgrades);
 
 // Rota para buscar upgrades de uma build específica
 // GET /api/build-upgrades/build/1
