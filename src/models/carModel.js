@@ -82,4 +82,24 @@ const getMarcas = async () => {
     return result.rows.map(row => row.marca);
 };
 
-module.exports = { getCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getCarsWithFilters, getMarcas };
+const getCategories = async () => {
+    try {
+        // Fazer consultas separadas para cada categoria
+        const economico = await pool.query('SELECT COUNT(*) as total FROM cars WHERE preco < 150000');
+        const medio = await pool.query('SELECT COUNT(*) as total FROM cars WHERE preco >= 150000 AND preco < 400000');
+        const premium = await pool.query('SELECT COUNT(*) as total FROM cars WHERE preco >= 400000 AND preco < 800000');
+        const supercar = await pool.query('SELECT COUNT(*) as total FROM cars WHERE preco >= 800000');
+        
+        return [
+            { categoria: 'economico', total: parseInt(economico.rows[0].total) },
+            { categoria: 'medio', total: parseInt(medio.rows[0].total) },
+            { categoria: 'premium', total: parseInt(premium.rows[0].total) },
+            { categoria: 'supercar', total: parseInt(supercar.rows[0].total) }
+        ];
+    } catch (error) {
+        console.error('Erro na query getCategories:', error);
+        throw error;
+    }
+};
+
+module.exports = { getCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getCarsWithFilters, getMarcas, getCategories };

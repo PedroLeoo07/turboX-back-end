@@ -60,4 +60,14 @@ const deleteUser = async (req,res) => {
     }
 };
 
-module.exports =  { getAllUsers, getUser, createUser, updateUser, deleteUser };
+const getUserStats = async (req, res) => {
+    try {
+        const stats = await userModel.getUserStats();
+        res.status(200).json(stats);
+    } catch (error) {
+        console.error('Erro ao buscar estatísticas de usuários:', error);
+        res.status(500).json({ message: "Erro ao buscar estatísticas de usuários" });
+    }
+};
+
+module.exports =  { getAllUsers, getUser, createUser, updateUser, deleteUser, getUserStats };

@@ -113,10 +113,40 @@ const deleteUser = async (id) => {
     }
 };
 
+const getUserStats = async () => {
+    try {
+        const totalUsers = await pool.query('SELECT COUNT(*) as total FROM users');
+        const totalBuilds = await pool.query('SELECT COUNT(*) as total FROM builds');
+        const usersWithBuilds = await pool.query(`
+            SELECT COUNT(DISTINCT id_usuario) as total 
+            FROM builds
+        `);
+        const avgBuildsPerUser = await pool.query(`
+            SELECT ROUND(AVG(build_count), 2) as media
+            FROM (
+                SELECT COUNT(*) as build_count 
+                FROM builds 
+                GROUP BY id_usuario
+            ) as user_builds
+        `);
+        
+        return {
+            totalUsers: parseInt(totalUsers.rows[0].total),
+            totalBuilds: parseInt(totalBuilds.rows[0].total),
+            usersWithBuilds: parseInt(usersWithBuilds.rows[0].total),
+            avgBuildsPerUser: parseFloat(avgBuildsPerUser.rows[0].media) || 0
+        };
+    } catch (error) {
+        console.error('Erro na query getUserStats:', error);
+        throw new Error('Erro ao buscar estatísticas de usuários: ' + error.message);
+    }
+};
+
 module.exports = {
     getUsers,
     getUser,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserStats
 };

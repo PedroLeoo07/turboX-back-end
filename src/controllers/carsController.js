@@ -93,4 +93,14 @@ const getMarcas = async (req, res) => {
     }
 };
 
-module.exports = { getAllCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getMarcas };
+const getCategories = async (req, res) => {
+    try {
+        const categories = await carModel.getCategories();
+        res.status(200).json(categories);
+    } catch (error) {
+        console.error('Erro ao buscar categorias:', error);
+        res.status(500).json({ message: "Erro ao buscar categorias" });
+    }
+};
+
+module.exports = { getAllCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getMarcas, getCategories };

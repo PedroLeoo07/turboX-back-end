@@ -12,6 +12,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Rota de health check
+app.get("/api/health", (req, res) => {
+    res.status(200).json({ 
+        status: "OK", 
+        message: "API TurboX funcionando corretamente",
+        timestamp: new Date().toISOString()
+    });
+});
+
 app.use("/api", usersRoutes);
 app.use("/api", carsRoutes);
 app.use("/api", upgradesRoutes);
