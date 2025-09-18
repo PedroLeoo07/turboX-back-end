@@ -1,0 +1,60 @@
+const jwt = require('jsonwebtoken');
+const userModel = require('../models/userModel');
+
+const authenticateToken = async (req, res, next) => {
+    try {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+        if (!token) {
+            return res.status(401).json({ message: 'Token de acesso requerido' });
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'turbox_secret_key');
+        
+        // Verificar se o usuário ainda existe
+        const user = await userModel.getUser(decoded.id);
+        if (!user) {
+            return res.status(401).json({ message: 'Usuário não encontrado' });
+        }
+
+        // Adicionar informações do usuário à requisição
+        req.user = {
+            id: decoded.id,
+            email: decoded.email,
+            nome: decoded.nome
+        };
+
+        next();
+    } catch (error) {
+        console.error('Erro na autenticação:', error);
+        return res.status(403).json({ message: 'Token inválido' });
+    }
+};
+
+const optionalAuth = async (req, res, next) => {
+    try {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+
+        if (token) {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET || 'turbox_secret_key');
+            const user = await userModel.getUser(decoded.id);
+            
+            if (user) {
+                req.user = {
+                    id: decoded.id,
+                    email: decoded.email,
+                    nome: decoded.nome
+                };
+            }
+        }
+
+        next();
+    } catch (error) {
+        // Se há erro no token, apenas continue sem autenticação
+        next();
+    }
+};
+
+module.exports = { authenticateToken, optionalAuth };

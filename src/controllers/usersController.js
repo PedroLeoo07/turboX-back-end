@@ -3,18 +3,22 @@ const userModel = require("../models/userModel");
 const getAllUsers = async (req,res) => {
     try {
         const users = await userModel.getUsers();
-        res.status(200).json(users);
+        res.status(200).json(users || []);
     } catch (error) {
-        res.status(404).json({message: "Erro ao buscar usuários"});
+        console.error('Erro ao buscar usuários:', error);
+        res.status(500).json({message: "Erro ao buscar usuários"});
     }
 };
 
 const getUser = async (req,res) => {
     try {
         const user = await userModel.getUser(req.params.id);
+        if (!user) {
+            return res.status(404).json({ message: "Usuário não encontrado" });
+        }
         res.status(200).json(user);
     } catch (error) {
-        res.status(404).json({ message: "Erro ao buscar jogador"});
+        res.status(404).json({ message: "Erro ao buscar usuário"});
     }
 };
 
@@ -63,6 +67,14 @@ const deleteUser = async (req,res) => {
 const getUserStats = async (req, res) => {
     try {
         const stats = await userModel.getUserStats();
+        if (!stats) {
+            return res.status(200).json({
+                totalUsers: 0,
+                totalBuilds: 0,
+                usersWithBuilds: 0,
+                avgBuildsPerUser: 0
+            });
+        }
         res.status(200).json(stats);
     } catch (error) {
         console.error('Erro ao buscar estatísticas de usuários:', error);

@@ -6,12 +6,13 @@ const getAllCars = async (req, res) => {
         
         if (marca || minPotencia || maxPotencia || minPreco || maxPreco) {
             const cars = await carModel.getCarsWithFilters(marca, minPotencia, maxPotencia, minPreco, maxPreco);
-            return res.status(200).json(cars);
+            return res.status(200).json(cars || []);
         }
         
         const cars = await carModel.getCars();
-        res.status(200).json(cars);
+        res.status(200).json(cars || []);
     } catch (error) {
+        console.error('Erro ao buscar carros:', error);
         res.status(500).json({ message: "Erro ao buscar carros" });
     }
 };
@@ -87,8 +88,12 @@ const getCarsByMarca = async (req, res) => {
 const getMarcas = async (req, res) => {
     try {
         const marcas = await carModel.getMarcas();
+        if (!marcas || !Array.isArray(marcas)) {
+            return res.status(200).json([]);
+        }
         res.status(200).json(marcas);
     } catch (error) {
+        console.error('Erro ao buscar marcas:', error);
         res.status(500).json({ message: "Erro ao buscar marcas" });
     }
 };
@@ -96,6 +101,9 @@ const getMarcas = async (req, res) => {
 const getCategories = async (req, res) => {
     try {
         const categories = await carModel.getCategories();
+        if (!categories || !Array.isArray(categories)) {
+            return res.status(200).json([]);
+        }
         res.status(200).json(categories);
     } catch (error) {
         console.error('Erro ao buscar categorias:', error);

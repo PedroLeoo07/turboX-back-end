@@ -21,6 +21,15 @@ const getUser = async (id) => {
     }
 };
 
+const getUserByEmail = async (email) => {
+    try {
+        const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+        return result.rows.length > 0 ? result.rows[0] : null;
+    } catch (error) {
+        throw new Error('Erro ao buscar usuário por email: ' + error.message);
+    }
+};
+
 const createUser = async (nome, email, senha) => {
     try {
         const existingUser = await pool.query('SELECT id FROM users WHERE email = $1', [email]);
@@ -145,6 +154,7 @@ const getUserStats = async () => {
 module.exports = {
     getUsers,
     getUser,
+    getUserByEmail,
     createUser,
     updateUser,
     deleteUser,
