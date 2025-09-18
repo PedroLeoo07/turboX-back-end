@@ -190,7 +190,128 @@ INSERT INTO cars (imagem, marca, modelo, ano, potencia, torque, peso, zero_cem, 
 ('hyundai_tucson_n.jpg', 'Hyundai', 'Tucson N-Line', 2024, 286, 421, 1734, 5.3, 225000.00),
 ('hyundai_accent_sport.jpg', 'Hyundai', 'Accent Sport', 2022, 120, 113, 1195, 9.9, 85000.00),
 ('hyundai_tiburon.jpg', 'Hyundai', 'Tiburon', 2007, 172, 181, 1379, 7.6, 65000.00),
-('hyundai_santa_fe_sport.jpg', 'Hyundai', 'Santa Fe Sport', 2024, 277, 311, 1885, 6.9, 195000.00);
+('hyundai_santa_fe_sport.jpg', 'Hyundai', 'Santa Fe Sport', 2024, 277, 311, 1885, 6.9, 195000.00),
+
+
+-- Porsche (10 carros)
+('porsche_911_turbo_s.jpg', 'Porsche', '911 Turbo S', 2024, 640, 800, 1640, 2.7, 1250000.00),
+('porsche_911_gt3.jpg', 'Porsche', '911 GT3', 2024, 502, 470, 1435, 3.4, 950000.00),
+('porsche_cayman_gt4.jpg', 'Porsche', 'Cayman GT4', 2023, 414, 420, 1420, 4.4, 580000.00),
+('porsche_panamera_turbo.jpg', 'Porsche', 'Panamera Turbo S', 2024, 630, 820, 2050, 3.1, 980000.00),
+('porsche_cayenne_turbo.jpg', 'Porsche', 'Cayenne Turbo', 2024, 541, 770, 2200, 3.9, 750000.00),
+('porsche_macan_turbo.jpg', 'Porsche', 'Macan Turbo', 2024, 434, 550, 1895, 4.3, 485000.00),
+('porsche_taycan_turbo.jpg', 'Porsche', 'Taycan Turbo S', 2024, 750, 1050, 2295, 2.8, 1150000.00),
+('porsche_718_spyder.jpg', 'Porsche', '718 Spyder', 2023, 414, 420, 1405, 4.4, 620000.00),
+('porsche_911_carrera.jpg', 'Porsche', '911 Carrera S', 2024, 443, 530, 1515, 3.7, 685000.00),
+('porsche_boxster_gts.jpg', 'Porsche', 'Boxster GTS', 2023, 394, 430, 1405, 4.5, 485000.00),
+
+-- Ferrari (10 carros)
+('ferrari_f8_tributo.jpg', 'Ferrari', 'F8 Tributo', 2023, 710, 770, 1435, 2.9, 2850000.00),
+('ferrari_sf90_stradale.jpg', 'Ferrari', 'SF90 Stradale', 2024, 986, 800, 1570, 2.5, 4500000.00),
+('ferrari_488_pista.jpg', 'Ferrari', '488 Pista', 2022, 710, 770, 1385, 2.8, 3250000.00),
+('ferrari_portofino_m.jpg', 'Ferrari', 'Portofino M', 2023, 612, 760, 1664, 3.4, 2450000.00),
+('ferrari_roma.jpg', 'Ferrari', 'Roma', 2024, 612, 760, 1570, 3.4, 2150000.00),
+('ferrari_812_superfast.jpg', 'Ferrari', '812 Superfast', 2023, 789, 718, 1525, 2.9, 3850000.00),
+('ferrari_296_gtb.jpg', 'Ferrari', '296 GTB', 2024, 818, 740, 1470, 2.9, 2850000.00),
+('ferrari_california_t.jpg', 'Ferrari', 'California T', 2018, 552, 755, 1735, 3.6, 1850000.00),
+('ferrari_458_italia.jpg', 'Ferrari', '458 Italia', 2015, 562, 540, 1380, 3.4, 1950000.00),
+('ferrari_f12_berlinetta.jpg', 'Ferrari', 'F12 Berlinetta', 2017, 730, 690, 1525, 3.1, 2650000.00),
+
+-- Lamborghini (10 carros)
+('lamborghini_huracan_evo.jpg', 'Lamborghini', 'Huracán EVO', 2024, 630, 600, 1422, 2.9, 1850000.00),
+('lamborghini_aventador_svj.jpg', 'Lamborghini', 'Aventador SVJ', 2023, 759, 720, 1525, 2.8, 4850000.00),
+('lamborghini_urus.jpg', 'Lamborghini', 'Urus', 2024, 641, 850, 2200, 3.6, 1650000.00),
+('lamborghini_gallardo_lp570.jpg', 'Lamborghini', 'Gallardo LP570-4', 2013, 562, 540, 1340, 3.4, 1450000.00),
+('lamborghini_murcielago_lp640.jpg', 'Lamborghini', 'Murciélago LP640', 2010, 631, 660, 1665, 3.4, 1850000.00),
+('lamborghini_reventon.jpg', 'Lamborghini', 'Reventón', 2008, 631, 660, 1665, 3.4, 8500000.00),
+('lamborghini_sian.jpg', 'Lamborghini', 'Sián', 2022, 808, 720, 1560, 2.8, 4500000.00),
+('lamborghini_countach_lpi.jpg', 'Lamborghini', 'Countach LPI 800-4', 2023, 803, 720, 1595, 2.8, 4850000.00),
+('lamborghini_huracan_sto.jpg', 'Lamborghini', 'Huracán STO', 2023, 630, 565, 1339, 3.0, 2850000.00),
+('lamborghini_diablo_vt.jpg', 'Lamborghini', 'Diablo VT', 2001, 530, 580, 1576, 4.0, 850000.00),
+
+-- McLaren (10 carros)
+('mclaren_720s.jpg', 'McLaren', '720S', 2023, 710, 770, 1419, 2.9, 2650000.00),
+('mclaren_765lt.jpg', 'McLaren', '765LT', 2022, 755, 800, 1339, 2.7, 3850000.00),
+('mclaren_p1.jpg', 'McLaren', 'P1', 2015, 903, 900, 1547, 2.8, 12500000.00),
+('mclaren_senna.jpg', 'McLaren', 'Senna', 2020, 789, 800, 1198, 2.8, 8500000.00),
+('mclaren_600lt.jpg', 'McLaren', '600LT', 2021, 592, 620, 1247, 2.9, 2250000.00),
+('mclaren_gt.jpg', 'McLaren', 'GT', 2023, 612, 630, 1530, 3.2, 1850000.00),
+('mclaren_540c.jpg', 'McLaren', '540C', 2019, 533, 540, 1311, 3.4, 1450000.00),
+('mclaren_570s.jpg', 'McLaren', '570S', 2018, 562, 600, 1313, 3.2, 1650000.00),
+('mclaren_12c.jpg', 'McLaren', '12C', 2014, 616, 600, 1434, 3.1, 1250000.00),
+('mclaren_artura.jpg', 'McLaren', 'Artura', 2024, 671, 720, 1395, 3.0, 2450000.00),
+
+-- Bugatti (10 carros)
+('bugatti_chiron.jpg', 'Bugatti', 'Chiron', 2024, 1479, 1600, 1995, 2.4, 25000000.00),
+('bugatti_veyron_ss.jpg', 'Bugatti', 'Veyron Super Sport', 2012, 1183, 1500, 1888, 2.5, 18500000.00),
+('bugatti_divo.jpg', 'Bugatti', 'Divo', 2020, 1479, 1600, 1963, 2.4, 45000000.00),
+('bugatti_centodieci.jpg', 'Bugatti', 'Centodieci', 2022, 1577, 1600, 1976, 2.4, 8500000.00),
+('bugatti_la_voiture_noire.jpg', 'Bugatti', 'La Voiture Noire', 2019, 1479, 1600, 1995, 2.4, 12500000.00),
+('bugatti_eb110_ss.jpg', 'Bugatti', 'EB110 Super Sport', 1994, 603, 650, 1618, 3.2, 2850000.00),
+('bugatti_atlantique.jpg', 'Bugatti', 'Type 57 Atlantic', 1938, 200, 220, 950, 8.0, 45000000.00),
+('bugatti_chiron_pur_sport.jpg', 'Bugatti', 'Chiron Pur Sport', 2023, 1479, 1600, 1940, 2.3, 32500000.00),
+('bugatti_bolide.jpg', 'Bugatti', 'Bolide', 2024, 1825, 1850, 1240, 2.17, 45000000.00),
+('bugatti_mistral.jpg', 'Bugatti', 'W16 Mistral', 2024, 1577, 1600, 2040, 2.4, 42500000.00),
+
+-- Koenigsegg (10 carros)
+('koenigsegg_regera.jpg', 'Koenigsegg', 'Regera', 2022, 1479, 2000, 1628, 2.8, 18500000.00),
+('koenigsegg_jesko.jpg', 'Koenigsegg', 'Jesko', 2024, 1600, 1500, 1420, 2.5, 28500000.00),
+('koenigsegg_gemera.jpg', 'Koenigsegg', 'Gemera', 2024, 1700, 3500, 2300, 1.9, 16500000.00),
+('koenigsegg_agera_rs.jpg', 'Koenigsegg', 'Agera RS', 2018, 1340, 1371, 1395, 2.8, 22500000.00),
+('koenigsegg_ccxr.jpg', 'Koenigsegg', 'CCXR Edition', 2008, 1018, 1060, 1180, 3.2, 4850000.00),
+('koenigsegg_one1.jpg', 'Koenigsegg', 'One:1', 2015, 1340, 1371, 1360, 2.8, 26500000.00),
+('koenigsegg_cc850.jpg', 'Koenigsegg', 'CC850', 2024, 1385, 1385, 1385, 2.7, 32500000.00),
+('koenigsegg_ccr.jpg', 'Koenigsegg', 'CCR', 2005, 806, 920, 1180, 3.2, 2850000.00),
+('koenigsegg_ccx.jpg', 'Koenigsegg', 'CCX', 2008, 806, 920, 1180, 3.2, 3850000.00),
+('koenigsegg_cc8s.jpg', 'Koenigsegg', 'CC8S', 2003, 655, 750, 1175, 3.5, 1850000.00),
+
+-- Pagani (10 carros)
+('pagani_huayra_bc.jpg', 'Pagani', 'Huayra BC', 2023, 789, 1100, 1218, 2.8, 26500000.00),
+('pagani_zonda_r.jpg', 'Pagani', 'Zonda R', 2012, 740, 710, 1070, 2.7, 18500000.00),
+('pagani_utopia.jpg', 'Pagani', 'Utopia', 2024, 852, 1100, 1280, 3.2, 25000000.00),
+('pagani_huayra_roadster.jpg', 'Pagani', 'Huayra Roadster', 2022, 764, 1000, 1280, 3.4, 22500000.00),
+('pagani_zonda_f.jpg', 'Pagani', 'Zonda F', 2008, 594, 650, 1230, 3.6, 4850000.00),
+('pagani_zonda_cinque.jpg', 'Pagani', 'Zonda Cinque', 2010, 678, 780, 1210, 3.4, 8500000.00),
+('pagani_huayra_imola.jpg', 'Pagani', 'Huayra Imola', 2021, 827, 1100, 1246, 2.8, 45000000.00),
+('pagani_zonda_hp_barchetta.jpg', 'Pagani', 'Zonda HP Barchetta', 2018, 789, 850, 1250, 3.4, 12500000.00),
+('pagani_zonda_revolucion.jpg', 'Pagani', 'Zonda Revolución', 2013, 800, 730, 1070, 2.6, 28500000.00),
+('pagani_zonda_760.jpg', 'Pagani', 'Zonda 760', 2014, 760, 780, 1210, 3.2, 16500000.00),
+
+-- Maserati (10 carros)
+('maserati_mc20.jpg', 'Maserati', 'MC20', 2024, 621, 730, 1500, 2.9, 1850000.00),
+('maserati_quattroporte_trofeo.jpg', 'Maserati', 'Quattroporte Trofeo', 2023, 572, 730, 1998, 3.8, 950000.00),
+('maserati_levante_trofeo.jpg', 'Maserati', 'Levante Trofeo', 2023, 572, 730, 2205, 3.8, 850000.00),
+('maserati_ghibli_trofeo.jpg', 'Maserati', 'Ghibli Trofeo', 2023, 572, 730, 1860, 3.8, 750000.00),
+('maserati_granturismo_mc.jpg', 'Maserati', 'GranTurismo MC', 2018, 454, 520, 1880, 4.7, 685000.00),
+('maserati_grancabrio_mc.jpg', 'Maserati', 'GranCabrio MC', 2017, 454, 520, 1980, 4.9, 750000.00),
+('maserati_alfieri.jpg', 'Maserati', 'Alfieri', 2025, 520, 600, 1650, 4.0, 1250000.00),
+('maserati_birdcage_75th.jpg', 'Maserati', 'Birdcage 75th', 2005, 700, 650, 850, 2.5, 8500000.00),
+('maserati_3200_gt.jpg', 'Maserati', '3200 GT', 2002, 370, 490, 1680, 5.1, 285000.00),
+('maserati_spyder_cambiocorsa.jpg', 'Maserati', 'Spyder Cambiocorsa', 2005, 390, 451, 1520, 4.9, 385000.00),
+
+-- Alfa Romeo (10 carros)
+('alfa_giulia_quadrifoglio.jpg', 'Alfa Romeo', 'Giulia Quadrifoglio', 2024, 505, 600, 1655, 3.9, 485000.00),
+('alfa_stelvio_quadrifoglio.jpg', 'Alfa Romeo', 'Stelvio Quadrifoglio', 2024, 505, 600, 1830, 3.8, 550000.00),
+('alfa_4c.jpg', 'Alfa Romeo', '4C', 2020, 237, 350, 895, 4.5, 385000.00),
+('alfa_8c_competizione.jpg', 'Alfa Romeo', '8C Competizione', 2008, 444, 470, 1585, 4.2, 1850000.00),
+('alfa_giulietta_qv.jpg', 'Alfa Romeo', 'Giulietta QV', 2019, 240, 340, 1465, 6.0, 185000.00),
+('alfa_159_ti.jpg', 'Alfa Romeo', '159 TI', 2011, 260, 400, 1660, 6.6, 125000.00),
+('alfa_spider_916.jpg', 'Alfa Romeo', 'Spider 916', 1998, 190, 270, 1380, 7.5, 85000.00),
+('alfa_gtv_cup.jpg', 'Alfa Romeo', 'GTV Cup', 2003, 220, 300, 1430, 6.3, 95000.00),
+('alfa_brera_ti.jpg', 'Alfa Romeo', 'Brera TI', 2010, 260, 400, 1590, 6.8, 165000.00),
+('alfa_mito_qv.jpg', 'Alfa Romeo', 'MiTo QV', 2016, 170, 250, 1365, 7.3, 125000.00),
+
+-- Jaguar (10 carros)
+('jaguar_f_type_r.jpg', 'Jaguar', 'F-Type R', 2024, 575, 700, 1665, 3.5, 650000.00),
+('jaguar_xe_sv_project8.jpg', 'Jaguar', 'XE SV Project 8', 2019, 592, 700, 1745, 3.3, 1250000.00),
+('jaguar_f_pace_svr.jpg', 'Jaguar', 'F-Pace SVR', 2023, 542, 680, 2066, 4.0, 750000.00),
+('jaguar_xfr_s.jpg', 'Jaguar', 'XFR-S', 2015, 542, 680, 1875, 4.4, 485000.00),
+('jaguar_xkr_s.jpg', 'Jaguar', 'XKR-S', 2014, 542, 680, 1785, 4.2, 685000.00),
+('jaguar_e_type_lightweight.jpg', 'Jaguar', 'E-Type Lightweight', 1964, 300, 385, 1016, 5.3, 4850000.00),
+('jaguar_xj220.jpg', 'Jaguar', 'XJ220', 1994, 542, 644, 1470, 3.6, 8500000.00),
+('jaguar_c_x75.jpg', 'Jaguar', 'C-X75', 2013, 850, 1000, 1677, 3.4, 12500000.00),
+('jaguar_d_type.jpg', 'Jaguar', 'D-Type', 1957, 250, 300, 900, 4.9, 18500000.00),
+('jaguar_i_pace.jpg', 'Jaguar', 'I-Pace', 2024, 394, 696, 2208, 4.8, 485000.00);
 
 -- INSERTS DE UPGRADES
 INSERT INTO upgrades (nome, ganho_potencia, ganho_torque, custo, tipo) VALUES
