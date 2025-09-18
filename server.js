@@ -60,6 +60,27 @@ testConnection();
 
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+
+// Tratamento de erros não capturados
+process.on('uncaughtException', (error) => {
+    console.error('❌ Erro não capturado:', error);
+    process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('❌ Promise rejeitada não tratada:', reason);
+    console.error('Na promise:', promise);
+});
+
+const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚗 Servidor rodando em http://localhost:${PORT}`);
+    console.log(`🔗 Também disponível em http://0.0.0.0:${PORT}`);
+});
+
+server.on('error', (error) => {
+    console.error('❌ Erro no servidor:', error);
+});
+
+server.on('listening', () => {
+    console.log('✅ Servidor está escutando na porta', server.address().port);
 });
