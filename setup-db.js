@@ -80,7 +80,7 @@ async function executeSchema() {
   } catch (error) {
     console.error('❌ Erro ao executar schema:', error);
     
-    if (error.message.includes('already exists')) {
+    if (error.message.includes('já existe') || error.message.includes('already exists')) {
       console.log('⚠️  Algumas tabelas já existem. Tentando recriar...');
       
       try {
