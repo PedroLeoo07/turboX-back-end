@@ -94,6 +94,11 @@ async function executeSchema() {
         `);
         
         console.log('🔄 Tabelas removidas. Executando schema novamente...');
+        
+        // Ler arquivo schema.sql novamente
+        const schemaPath = path.join(__dirname, 'src', 'database', 'schema.sql');
+        const schemaSQL = fs.readFileSync(schemaPath, 'utf8');
+        
         await client.query(schemaSQL);
         console.log('✅ Schema executado com sucesso após limpeza!');
         

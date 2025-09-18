@@ -314,4 +314,4 @@ INSERT INTO build_upgrades (id_build, id_upgrade) VALUES
 -- Build 29 (Veloster - upgrades turbo)
 (29, 12), (29, 15), (29, 18), (29, 21),
 -- Build 30 (Veloster N - upgrades hot hatch)
-(30, 12), (30, 15), (30, 18), (30, 21), (30, 10);
+(30, 12), (30, 16), (30, 18), (30, 20);
