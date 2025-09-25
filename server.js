@@ -9,6 +9,9 @@ const upgradesRoutes = require("./src/routes/upgradesRoutes");
 const buildsRoutes = require("./src/routes/buildsRoutes");
 const buildUpgradesRoutes = require("./src/routes/buildUpgradesRoutes");
 
+// Swagger
+const setupSwagger = require("./src/config/swagger");
+
 const app = express();
 
 // Configuração de CORS mais específica
@@ -20,6 +23,9 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+// Swagger (documentação em /doc)
+setupSwagger(app);
 
 // Middleware de logging
 app.use((req, res, next) => {

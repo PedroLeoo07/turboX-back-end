@@ -2,36 +2,218 @@ const express = require('express');
 const router = express.Router();
 const { getAllCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getMarcas, getCategories } = require('../controllers/carsController');
 
-// Rota para buscar todos os carros (com filtros opcionais via query params)
-// GET /api/cars?marca=Honda&minPotencia=200&maxPotencia=400&minPreco=50000&maxPreco=200000
+
+/**
+ * @swagger
+ * /api/cars:
+ *   get:
+ *     summary: Lista todos os carros (com filtros opcionais)
+ *     tags: [Cars]
+ *     parameters:
+ *       - in: query
+ *         name: marca
+ *         schema:
+ *           type: string
+ *         description: Marca do carro
+ *       - in: query
+ *         name: minPotencia
+ *         schema:
+ *           type: integer
+ *         description: Potência mínima
+ *       - in: query
+ *         name: maxPotencia
+ *         schema:
+ *           type: integer
+ *         description: Potência máxima
+ *       - in: query
+ *         name: minPreco
+ *         schema:
+ *           type: number
+ *         description: Preço mínimo
+ *       - in: query
+ *         name: maxPreco
+ *         schema:
+ *           type: number
+ *         description: Preço máximo
+ *     responses:
+ *       200:
+ *         description: Lista de carros
+ */
 router.get('/cars', getAllCars);
 
-// Rota para buscar todas as marcas disponíveis
-// GET /api/cars/marcas
+
+/**
+ * @swagger
+ * /api/cars/marcas:
+ *   get:
+ *     summary: Lista todas as marcas disponíveis
+ *     tags: [Cars]
+ *     responses:
+ *       200:
+ *         description: Lista de marcas
+ */
 router.get('/cars/marcas', getMarcas);
 
-// Rota para buscar categorias de carros por preço
-// GET /api/cars/categories
+
+/**
+ * @swagger
+ * /api/cars/categories:
+ *   get:
+ *     summary: Lista categorias de carros por preço
+ *     tags: [Cars]
+ *     responses:
+ *       200:
+ *         description: Lista de categorias
+ */
 router.get('/cars/categories', getCategories);
 
-// Rota para buscar carros por marca
-// GET /api/cars/marca/Honda
+
+/**
+ * @swagger
+ * /api/cars/marca/{marca}:
+ *   get:
+ *     summary: Lista carros por marca
+ *     tags: [Cars]
+ *     parameters:
+ *       - in: path
+ *         name: marca
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Marca do carro
+ *     responses:
+ *       200:
+ *         description: Lista de carros da marca
+ */
 router.get('/cars/marca/:marca', getCarsByMarca);
 
-// Rota para buscar um carro específico por ID
-// GET /api/cars/1
+
+/**
+ * @swagger
+ * /api/cars/{id}:
+ *   get:
+ *     summary: Busca um carro por ID
+ *     tags: [Cars]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID do carro
+ *     responses:
+ *       200:
+ *         description: Carro encontrado
+ *       404:
+ *         description: Carro não encontrado
+ */
 router.get('/cars/:id', getCar);
 
-// Rota para criar um novo carro
-// POST /api/cars
+
+/**
+ * @swagger
+ * /api/cars:
+ *   post:
+ *     summary: Cria um novo carro
+ *     tags: [Cars]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               imagem:
+ *                 type: string
+ *               marca:
+ *                 type: string
+ *               modelo:
+ *                 type: string
+ *               ano:
+ *                 type: integer
+ *               potencia:
+ *                 type: integer
+ *               torque:
+ *                 type: integer
+ *               peso:
+ *                 type: integer
+ *               zero_cem:
+ *                 type: number
+ *               preco:
+ *                 type: number
+ *     responses:
+ *       201:
+ *         description: Carro criado
+ */
 router.post('/cars', createCar);
 
-// Rota para atualizar um carro
-// PUT /api/cars/1
+
+/**
+ * @swagger
+ * /api/cars/{id}:
+ *   put:
+ *     summary: Atualiza um carro existente
+ *     tags: [Cars]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID do carro
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               imagem:
+ *                 type: string
+ *               marca:
+ *                 type: string
+ *               modelo:
+ *                 type: string
+ *               ano:
+ *                 type: integer
+ *               potencia:
+ *                 type: integer
+ *               torque:
+ *                 type: integer
+ *               peso:
+ *                 type: integer
+ *               zero_cem:
+ *                 type: number
+ *               preco:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Carro atualizado
+ *       404:
+ *         description: Carro não encontrado
+ */
 router.put('/cars/:id', updateCar);
 
-// Rota para deletar um carro
-// DELETE /api/cars/1
+
+/**
+ * @swagger
+ * /api/cars/{id}:
+ *   delete:
+ *     summary: Deleta um carro
+ *     tags: [Cars]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID do carro
+ *     responses:
+ *       200:
+ *         description: Carro deletado
+ *       404:
+ *         description: Carro não encontrado
+ */
 router.delete('/cars/:id', deleteCar);
 
 module.exports = router;

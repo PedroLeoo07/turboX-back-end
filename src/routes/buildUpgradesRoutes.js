@@ -10,32 +10,135 @@ const {
     getPopularUpgrades 
 } = require('../controllers/buildUpgradesController');
 
-// Rota para buscar todas as associações build-upgrade
-// GET /api/build-upgrades
+
+/**
+ * @swagger
+ * /api/buildUpgrades:
+ *   get:
+ *     summary: Lista todas as associações build-upgrade
+ *     tags: [BuildUpgrades]
+ *     responses:
+ *       200:
+ *         description: Lista de associações build-upgrade
+ */
 router.get('/buildUpgrades', getAllBuildUpgrades);
 
-// Rota para buscar estatísticas das associações
-// GET /api/build-upgrades/stats
+
+/**
+ * @swagger
+ * /api/buildUpgrades/stats:
+ *   get:
+ *     summary: Estatísticas das associações build-upgrade
+ *     tags: [BuildUpgrades]
+ *     responses:
+ *       200:
+ *         description: Estatísticas das associações
+ */
 router.get('/buildUpgrades/stats', getBuildUpgradeStats);
 
-// Rota para buscar upgrades mais populares
-// GET /api/build-upgrades/popular?limit=10
+
+/**
+ * @swagger
+ * /api/buildUpgrades/popular:
+ *   get:
+ *     summary: Lista upgrades mais populares
+ *     tags: [BuildUpgrades]
+ *     parameters:
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Limite de resultados
+ *     responses:
+ *       200:
+ *         description: Lista de upgrades populares
+ */
 router.get('/buildUpgrades/popular', getPopularUpgrades);
 
-// Rota para buscar upgrades de uma build específica
-// GET /api/build-upgrades/build/1
+
+/**
+ * @swagger
+ * /api/buildUpgrades/build/{buildId}:
+ *   get:
+ *     summary: Lista upgrades de uma build específica
+ *     tags: [BuildUpgrades]
+ *     parameters:
+ *       - in: path
+ *         name: buildId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID da build
+ *     responses:
+ *       200:
+ *         description: Lista de upgrades da build
+ */
 router.get('/buildUpgrades/build/:buildId', getBuildUpgradesByBuild);
 
-// Rota para buscar builds que usam um upgrade específico
-// GET /api/build-upgrades/upgrade/1
+
+/**
+ * @swagger
+ * /api/buildUpgrades/upgrade/{upgradeId}:
+ *   get:
+ *     summary: Lista builds que usam um upgrade específico
+ *     tags: [BuildUpgrades]
+ *     parameters:
+ *       - in: path
+ *         name: upgradeId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID do upgrade
+ *     responses:
+ *       200:
+ *         description: Lista de builds que usam o upgrade
+ */
 router.get('/buildUpgrades/upgrade/:upgradeId', getBuildUpgradesByUpgrade);
 
-// Rota para adicionar upgrade a uma build
-// POST /api/build-upgrades
+
+/**
+ * @swagger
+ * /api/buildUpgrades:
+ *   post:
+ *     summary: Adiciona upgrade a uma build
+ *     tags: [BuildUpgrades]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id_build:
+ *                 type: integer
+ *               id_upgrade:
+ *                 type: integer
+ *     responses:
+ *       201:
+ *         description: Upgrade adicionado à build
+ */
 router.post('/buildUpgrades', addBuildUpgrade);
 
-// Rota para remover upgrade de uma build
-// DELETE /api/build-upgrades/build/1/upgrade/2
+
+/**
+ * @swagger
+ * /api/buildUpgrades/{id}:
+ *   delete:
+ *     summary: Remove upgrade de uma build
+ *     tags: [BuildUpgrades]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID da associação build-upgrade
+ *     responses:
+ *       200:
+ *         description: Upgrade removido da build
+ *       404:
+ *         description: Associação não encontrada
+ */
 router.delete('/buildUpgrades/:id', removeBuildUpgrade);
 
 module.exports = router;

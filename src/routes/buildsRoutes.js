@@ -13,44 +13,251 @@ const {
     removeUpgradeFromBuild 
 } = require('../controllers/buildsController');
 
-// Rota para buscar todas as builds
-// GET /api/builds
+
+/**
+ * @swagger
+ * /api/builds:
+ *   get:
+ *     summary: Lista todas as builds
+ *     tags: [Builds]
+ *     responses:
+ *       200:
+ *         description: Lista de builds
+ */
 router.get('/builds', getAllBuilds);
 
-// Rota para buscar builds por usuário
-// GET /api/builds/user/1
+
+/**
+ * @swagger
+ * /api/builds/user/{userId}:
+ *   get:
+ *     summary: Lista builds por usuário
+ *     tags: [Builds]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Lista de builds do usuário
+ */
 router.get('/builds/user/:userId', getBuildsByUser);
 
-// Rota para buscar builds por carro
-// GET /api/builds/car/1
+
+/**
+ * @swagger
+ * /api/car/{carId}:
+ *   get:
+ *     summary: Lista builds por carro
+ *     tags: [Builds]
+ *     parameters:
+ *       - in: path
+ *         name: carId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID do carro
+ *     responses:
+ *       200:
+ *         description: Lista de builds do carro
+ */
 router.get('/car/:carId', getBuildsByCar);
 
-// Rota para buscar uma build específica por ID (com upgrades)
-// GET /api/builds/1
+
+/**
+ * @swagger
+ * /api/builds/{id}:
+ *   get:
+ *     summary: Busca uma build por ID
+ *     tags: [Builds]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID da build
+ *     responses:
+ *       200:
+ *         description: Build encontrada
+ *       404:
+ *         description: Build não encontrada
+ */
 router.get('/builds/:id', getBuild);
 
-// Rota para buscar upgrades de uma build específica
-// GET /api/builds/1/upgrades
+
+/**
+ * @swagger
+ * /api/builds/{id}/upgrades:
+ *   get:
+ *     summary: Lista upgrades de uma build
+ *     tags: [Builds]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID da build
+ *     responses:
+ *       200:
+ *         description: Lista de upgrades da build
+ */
 router.get('/builds/:id/upgrades', getBuildUpgrades);
 
-// Rota para criar uma nova build
-// POST /api/builds
+
+/**
+ * @swagger
+ * /api/builds:
+ *   post:
+ *     summary: Cria uma nova build
+ *     tags: [Builds]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id_usuario:
+ *                 type: integer
+ *               id_carro:
+ *                 type: integer
+ *               potencia_final:
+ *                 type: integer
+ *               torque_final:
+ *                 type: integer
+ *               zero_cem_final:
+ *                 type: number
+ *               custo_total:
+ *                 type: number
+ *     responses:
+ *       201:
+ *         description: Build criada
+ */
 router.post('/builds', createBuild);
 
-// Rota para adicionar upgrade a uma build
-// POST /api/builds/1/upgrades
+
+/**
+ * @swagger
+ * /api/builds/{id}/upgrades:
+ *   post:
+ *     summary: Adiciona upgrade a uma build
+ *     tags: [Builds]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID da build
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               upgradeId:
+ *                 type: integer
+ *     responses:
+ *       201:
+ *         description: Upgrade adicionado à build
+ */
 router.post('/:id/upgrades', addUpgradeToBuild);
 
-// Rota para atualizar uma build
-// PUT /api/builds/1
+
+/**
+ * @swagger
+ * /api/builds/{id}:
+ *   put:
+ *     summary: Atualiza uma build existente
+ *     tags: [Builds]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID da build
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id_usuario:
+ *                 type: integer
+ *               id_carro:
+ *                 type: integer
+ *               potencia_final:
+ *                 type: integer
+ *               torque_final:
+ *                 type: integer
+ *               zero_cem_final:
+ *                 type: number
+ *               custo_total:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Build atualizada
+ *       404:
+ *         description: Build não encontrada
+ */
 router.put('/builds/:id', updateBuild);
 
-// Rota para remover upgrade de uma build
-// DELETE /api/builds/1/upgrades/2
+
+/**
+ * @swagger
+ * /api/builds/{id}/upgrades/{upgradeId}:
+ *   delete:
+ *     summary: Remove upgrade de uma build
+ *     tags: [Builds]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID da build
+ *       - in: path
+ *         name: upgradeId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID do upgrade
+ *     responses:
+ *       200:
+ *         description: Upgrade removido da build
+ *       404:
+ *         description: Build ou upgrade não encontrado
+ */
 router.delete('/builds/:id/upgrades/:upgradeId', removeUpgradeFromBuild);
 
-// Rota para deletar uma build
-// DELETE /api/builds/1
+
+/**
+ * @swagger
+ * /api/builds/{id}:
+ *   delete:
+ *     summary: Deleta uma build
+ *     tags: [Builds]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID da build
+ *     responses:
+ *       200:
+ *         description: Build deletada
+ *       404:
+ *         description: Build não encontrada
+ */
 router.delete('/builds/:id', deleteBuild);
 
 module.exports = router;
