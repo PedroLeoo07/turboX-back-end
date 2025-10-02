@@ -224,7 +224,7 @@ INSERT INTO users (nome, email, senha) VALUES
 ('Marcelo Freitas', 'marcelo.freitas@email.com', '$2b$10$hashedpassword173'),
 ('Aline Tavares', 'aline.tavares@email.com', '$2b$10$hashedpassword174'),
 ('Rodrigo Barros', 'rodrigo.barros@email.com', '$2b$10$hashedpassword175'),
-('Larissa Almeida', 'larissa.almeida@email.com', '$2b$10$hashedpassword176'),
+('Larissa Santos', 'larissa.santos@email.com', '$2b$10$hashedpassword176'),
 ('Thiago Rocha', 'thiago.rocha@email.com', '$2b$10$hashedpassword177'),
 ('Gabriela Teixeira', 'gabriela.teixeira@email.com', '$2b$10$hashedpassword178'),
 ('Vinícius Gomes', 'vinicius.gomes@email.com', '$2b$10$hashedpassword179'),
