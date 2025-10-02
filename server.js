@@ -55,6 +55,89 @@ app.get("/api/health", (req, res) => {
     });
 });
 
+// Endpoint para testar imagens e debug
+app.get("/api/test/images", async (req, res) => {
+    try {
+        const axios = require('axios');
+        const testUrls = [
+            "https://ocarronovo.com.br/wp-content/uploads/2022/09/7-3-1536x864-1.png",
+            "https://quatrorodas.abril.com.br/wp-content/uploads/2017/11/honda-civic-type-r-3.jpg"
+        ];
+        
+        const results = [];
+        
+        for (let url of testUrls) {
+            try {
+                const response = await axios.head(url, { timeout: 5000 });
+                results.push({
+                    url,
+                    status: response.status,
+                    contentType: response.headers['content-type'],
+                    accessible: true
+                });
+            } catch (error) {
+                results.push({
+                    url,
+                    error: error.message,
+                    accessible: false
+                });
+            }
+        }
+        
+        res.json({
+            message: "Teste de acessibilidade das imagens",
+            results
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Endpoint de debug para carros
+app.get("/api/debug/cars/:marca", async (req, res) => {
+    try {
+        const { pool } = require('./src/config/database');
+        const marca = req.params.marca;
+        
+        // Buscar carros da marca
+        const carsResult = await pool.query('SELECT * FROM cars WHERE LOWER(marca) = LOWER($1)', [marca]);
+        
+        // Buscar todas as marcas disponíveis
+        const marcasResult = await pool.query('SELECT DISTINCT marca FROM cars ORDER BY marca');
+        
+        res.json({
+            marca_solicitada: marca,
+            carros_encontrados: carsResult.rows.length,
+            carros: carsResult.rows.map(car => ({
+                id: car.id,
+                marca: car.marca,
+                modelo: car.modelo,
+                ano: car.ano,
+                imagem_url: car.imagem,
+                imagem_length: car.imagem ? car.imagem.length : 0
+            })),
+            todas_marcas: marcasResult.rows.map(row => row.marca),
+            headers_cors: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ 
+            error: error.message,
+            marca: req.params.marca 
+        });
+    }
+});
+
+// Headers específicos para permitir carregamento de imagens
+app.use('/api/cars', (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Cross-Origin-Resource-Policy', 'cross-origin');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 app.use("/api", authRoutes);
 app.use("/api", usersRoutes);
 app.use("/api", carsRoutes);
