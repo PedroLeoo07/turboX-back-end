@@ -130,6 +130,120 @@ app.get("/api/debug/cars/:marca", async (req, res) => {
     }
 });
 
+// Endpoint completo para todas as marcas - ideal para debug do front-end
+app.get("/api/debug/all-brands", async (req, res) => {
+    try {
+        const { pool } = require('./src/config/database');
+        
+        // Buscar todas as marcas
+        const marcasResult = await pool.query('SELECT DISTINCT marca FROM cars ORDER BY marca');
+        const marcas = marcasResult.rows.map(row => row.marca);
+        
+        // Buscar carros de cada marca
+        const allBrandsData = {};
+        
+        for (let marca of marcas) {
+            const carsResult = await pool.query('SELECT * FROM cars WHERE LOWER(marca) = LOWER($1) ORDER BY modelo', [marca]);
+            
+            allBrandsData[marca] = {
+                total_carros: carsResult.rows.length,
+                carros: carsResult.rows.map(car => ({
+                    id: car.id,
+                    marca: car.marca,
+                    modelo: car.modelo,
+                    ano: car.ano,
+                    potencia: car.potencia,
+                    torque: car.torque,
+                    peso: car.peso,
+                    zero_cem: car.zero_cem,
+                    preco: car.preco,
+                    imagem: car.imagem,
+                    imagem_accessible: car.imagem ? true : false
+                }))
+            };
+        }
+        
+        // Estatísticas gerais
+        const totalCarsResult = await pool.query('SELECT COUNT(*) as total FROM cars');
+        const avgPriceResult = await pool.query('SELECT AVG(preco) as avg_price FROM cars');
+        
+        res.json({
+            total_marcas: marcas.length,
+            total_carros: parseInt(totalCarsResult.rows[0].total),
+            preco_medio: parseFloat(avgPriceResult.rows[0].avg_price).toFixed(2),
+            marcas_disponiveis: marcas,
+            dados_por_marca: allBrandsData,
+            endpoints_disponiveis: [
+                'GET /api/cars - todos os carros (com filtros opcionais)',
+                'GET /api/cars/marcas - lista todas as marcas',
+                'GET /api/cars?marca=NOME - carros por marca (query param)',
+                'GET /api/cars/marca/NOME - carros por marca (URL path)',
+                'GET /api/debug/cars/NOME - debug detalhado por marca'
+            ],
+            cors_headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Cross-Origin-Resource-Policy': 'cross-origin'
+            },
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json({ 
+            error: error.message,
+            stack: error.stack
+        });
+    }
+});
+
+// Endpoint otimizado para front-end - dados limpos de todas as marcas
+app.get("/api/frontend/brands", async (req, res) => {
+    try {
+        const { pool } = require('./src/config/database');
+        
+        // Buscar todas as marcas com carros
+        const result = await pool.query(`
+            SELECT 
+                marca,
+                COUNT(*) as total_carros,
+                MIN(preco) as preco_min,
+                MAX(preco) as preco_max,
+                AVG(preco) as preco_medio,
+                MAX(potencia) as max_potencia
+            FROM cars 
+            GROUP BY marca 
+            ORDER BY marca
+        `);
+        
+        const brands = result.rows.map(row => ({
+            nome: row.marca,
+            total_carros: parseInt(row.total_carros),
+            preco_minimo: parseFloat(row.preco_min),
+            preco_maximo: parseFloat(row.preco_max), 
+            preco_medio: Math.round(parseFloat(row.preco_medio)),
+            potencia_maxima: parseInt(row.max_potencia),
+            // URLs para o front-end usar
+            api_url_query: `http://localhost:3001/api/cars?marca=${encodeURIComponent(row.marca)}`,
+            api_url_path: `http://localhost:3001/api/cars/marca/${encodeURIComponent(row.marca)}`
+        }));
+        
+        res.json({
+            success: true,
+            total_brands: brands.length,
+            brands: brands,
+            usage: {
+                "Para buscar carros por marca": "Use as URLs em api_url_query ou api_url_path",
+                "Para listar todas marcas": "GET /api/cars/marcas",
+                "Para todos os carros": "GET /api/cars"
+            }
+        });
+        
+    } catch (error) {
+        res.status(500).json({ 
+            success: false,
+            error: error.message 
+        });
+    }
+});
+
 // Headers específicos para permitir carregamento de imagens
 app.use('/api/cars', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
