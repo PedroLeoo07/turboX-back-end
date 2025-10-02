@@ -68,7 +68,7 @@ INSERT INTO users (nome, email, senha) VALUES
 ('Gabriel Torres', 'gabriel.torres@email.com', '$2b$10$hashedpassword17'),
 ('Amanda Ribeiro', 'amanda.ribeiro@email.com', '$2b$10$hashedpassword18'),
 ('Thiago Barbosa', 'thiago.barbosa@email.com', '$2b$10$hashedpassword19'),
-('Larissa Moreira', 'larissa.moreira@email.com', '$2b$10$hashedpassword20');
+('Larissa Moreira', 'larissa.moreira@email.com', '$2b$10$hashedpassword20'),
 ('Vinicius Ramos', 'vinicius.ramos@email.com', '$2b$10$hashedpassword21'),
 ('Beatriz Figueiredo', 'beatriz.figueiredo@email.com', '$2b$10$hashedpassword22'),
 ('Eduardo Teixeira', 'eduardo.teixeira@email.com', '$2b$10$hashedpassword23'),
@@ -98,7 +98,7 @@ INSERT INTO users (nome, email, senha) VALUES
 ('Gisele Amaral', 'gisele.amaral@email.com', '$2b$10$hashedpassword47'),
 ('Heitor Braga', 'heitor.braga@email.com', '$2b$10$hashedpassword48'),
 ('Iara Pacheco', 'iara.pacheco@email.com', '$2b$10$hashedpassword49'),
-('Jonas Vilela', 'jonas.vilela@email.com', '$2b$10$hashedpassword50');
+('Jonas Vilela', 'jonas.vilela@email.com', '$2b$10$hashedpassword50'),
 ('Lucas Barbosa', 'lucas.barbosa@email.com', '$2b$10$hashedpassword51'),
 ('Juliana Castro', 'juliana.castro@email.com', '$2b$10$hashedpassword52'),
 ('André Souza', 'andre.souza@email.com', '$2b$10$hashedpassword53'),
@@ -442,16 +442,12 @@ INSERT INTO cars (imagem, marca, modelo, ano, potencia, torque, peso, zero_cem, 
 ('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCSlCmi_sFbCFGM9pnpH2DwlS5lB-a0jSjLA&s', 'Porsche', 'Taycan Turbo S', 2024, 750, 1050, 2295, 2.8, 1150000.00),
 ('https://cdn.motor1.com/images/mgl/40KwBM/s1/porsche-718-spyder-rs-br.jpg', 'Porsche', '718 Spyder', 2023, 414, 420, 1405, 4.4, 620000.00),
 ('https://cdn.motor1.com/images/mgl/YA7brl/s1/porsche-911-carrera-gts.webp', 'Porsche', '911 Carrera S', 2024, 443, 530, 1515, 3.7, 685000.00),
-('https://octane.rent/wp-content/uploads/2023/11/porsche-boxster-gts-white-13.jpg', 'Porsche', 'Boxster GTS', 2023, 394, 430, 1405, 4.5, 485000.00),
-
-
-
+('https://octane.rent/wp-content/uploads/2023/11/porsche-boxster-gts-white-13.jpg', 'Porsche', 'Boxster GTS', 2023, 394, 430, 1405, 4.5, 485000.00);
 
 -- INSERTS DE UPGRADES
 INSERT INTO upgrades (nome, ganho_potencia, ganho_torque, custo, tipo) VALUES
 ('Cold Air Intake', 15, 20, 1200.00, 'Aspiração'),
 ('Downpipe', 25, 35, 2500.00, 'Escape'),
-('Turbo Upgrade', 80, 120, 8500.00, 'Turbo'),
 ('Intercooler', 20, 25, 3200.00, 'Resfriamento'),
 ('ECU Remap', 40, 60, 1800.00, 'Eletrônica'),
 ('Catback Exhaust', 18, 22, 2800.00, 'Escape'),
@@ -473,7 +469,10 @@ INSERT INTO upgrades (nome, ganho_potencia, ganho_torque, custo, tipo) VALUES
 ('Radiator Upgrade', 8, 10, 2100.00, 'Resfriamento'),
 ('Strut Tower Brace', 0, 0, 1200.00, 'Suspensão'),
 ('Anti-Roll Bars', 0, 0, 1800.00, 'Suspensão'),
-('Brake Kit', 0, 0, 4200.00, 'Freios');
+('Brake Kit', 0, 0, 4200.00, 'Freios'),
+('Performance Tires', 0, 0, 3200.00, 'Rodas'),
+('Weight Reduction', 0, 0, 5000.00, 'Carroceria'),
+('Stage 1 Turbo', 60, 90, 12000.00, 'Turbo'),
 ('Stage 2 Turbo', 120, 180, 18000.00, 'Turbo'),
 ('Stage 3 Turbo', 160, 240, 25000.00, 'Turbo'),
 ('Big Brake Kit', 0, 0, 8000.00, 'Freios'),
@@ -522,7 +521,7 @@ INSERT INTO upgrades (nome, ganho_potencia, ganho_torque, custo, tipo) VALUES
 ('Performance Oil Pump', 0, 0, 1500.00, 'Motor'),
 ('Race Oil Pump', 0, 0, 2200.00, 'Motor'),
 ('Performance Timing Belt', 0, 0, 900.00, 'Motor'),
-('Race Timing Belt', 0, 0, 1500.00, 'Motor');
+('Race Timing Belt', 0, 0, 1500.00, 'Motor'),
 ('Stage 4 Turbo', 200, 300, 32000.00, 'Turbo'),
 ('Stage 5 Turbo', 250, 350, 40000.00, 'Turbo'),
 ('Ultra Brake Kit', 0, 0, 12000.00, 'Freios'),
@@ -604,7 +603,7 @@ INSERT INTO builds (id_usuario, id_carro, potencia_final, torque_final, zero_cem
 (7, 27, 613, 700, 3.1, 22800.00),
 (8, 28, 267, 323, 5.6, 6900.00),
 (9, 29, 350, 443, 4.9, 11200.00),
-(10, 30, 350, 443, 4.7, 9800.00);
+(10, 30, 350, 443, 4.7, 9800.00),
 (21, 31, 400, 500, 4.2, 15000.00),
 (22, 32, 320, 410, 5.1, 9000.00),
 (23, 33, 280, 350, 6.0, 7000.00),
@@ -787,7 +786,7 @@ INSERT INTO build_upgrades (id_build, id_upgrade) VALUES
 -- Build 29 (Veloster - upgrades turbo)
 (29, 12), (29, 15), (29, 18), (29, 21),
 -- Build 30 (Veloster N - upgrades hot hatch)
-(30, 12), (30, 15), (30, 18), (30, 21), (30, 10);
+(30, 12), (30, 15), (30, 18), (30, 21), (30, 10),
 
 (31, 1), (31, 2), (31, 3),
 (32, 4), (32, 5), (32, 6),
