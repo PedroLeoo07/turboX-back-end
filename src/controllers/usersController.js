@@ -81,4 +81,4 @@ const getUserStats = async (req, res) => {
     }
 };
 
-module.exports =  { getAllUsers, getUser, createUser, updateUser, deleteUser, getUserStats };
+module.exports = { getAllUsers, getUser, createUser, updateUser, deleteUser, getUserStats };
