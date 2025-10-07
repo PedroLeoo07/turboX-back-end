@@ -12,7 +12,6 @@ const setupSwagger = require("./src/config/swagger");
 
 const app = express();
 
-// Configuração de CORS
 app.use(cors({
     origin: ['http://localhost:3000', 'http://localhost:3001'],
     credentials: true,
@@ -22,10 +21,8 @@ app.use(cors({
 
 app.use(express.json());
 
-// Swagger
 setupSwagger(app);
 
-// Rotas
 app.use("/api", authRoutes);
 app.use("/api", usersRoutes);
 app.use("/api", carsRoutes);

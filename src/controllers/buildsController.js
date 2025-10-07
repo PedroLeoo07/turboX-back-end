@@ -24,8 +24,7 @@ const getBuild = async (req, res) => {
 const createBuild = async (req, res) => {
     try {
         const { id_usuario, id_carro, potencia_final, torque_final, zero_cem_final, custo_total } = req.body;
-        
-        // Validações básicas
+
         if (!id_usuario || !id_carro || !potencia_final || !torque_final || !zero_cem_final || !custo_total) {
             return res.status(400).json({ message: "Todos os campos obrigatórios devem ser preenchidos" });
         }
@@ -40,8 +39,7 @@ const createBuild = async (req, res) => {
 const updateBuild = async (req, res) => {
     try {
         const { id_usuario, id_carro, potencia_final, torque_final, zero_cem_final, custo_total } = req.body;
-        
-        // Validações básicas
+
         if (!id_usuario || !id_carro || !potencia_final || !torque_final || !zero_cem_final || !custo_total) {
             return res.status(400).json({ message: "Todos os campos obrigatórios devem ser preenchidos" });
         }

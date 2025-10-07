@@ -25,8 +25,7 @@ const getUser = async (req,res) => {
 const createUser = async (req,res) => {
     try {
         const { nome, email, senha } = req.body;
-        
-        // Validações básicas
+
         if (!nome || !email || !senha) {
             return res.status(400).json({ message: "Nome, email e senha são obrigatórios" });
         }

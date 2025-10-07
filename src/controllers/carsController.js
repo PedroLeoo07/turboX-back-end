@@ -4,16 +4,6 @@ const getAllCars = async (req, res) => {
     try {
         const { marca, minPotencia, maxPotencia, minPreco, maxPreco } = req.query;
         
-        // Log detalhado para debug
-        console.log('🔍 GET /api/cars - Query params:', {
-            marca: marca || 'null/undefined',
-            minPotencia: minPotencia || 'null/undefined',
-            maxPotencia: maxPotencia || 'null/undefined',
-            minPreco: minPreco || 'null/undefined',
-            maxPreco: maxPreco || 'null/undefined'
-        });
-        
-        // Validar e limpar parâmetros (ignorar se forem 'null', 'undefined' ou strings vazias)
         const cleanMarca = (marca && marca !== 'null' && marca !== 'undefined' && marca.trim() !== '') ? marca.trim() : null;
         const cleanMinPotencia = minPotencia && minPotencia !== 'null' && minPotencia !== 'undefined' ? minPotencia : null;
         const cleanMaxPotencia = maxPotencia && maxPotencia !== 'null' && maxPotencia !== 'undefined' ? maxPotencia : null;
@@ -21,18 +11,13 @@ const getAllCars = async (req, res) => {
         const cleanMaxPreco = maxPreco && maxPreco !== 'null' && maxPreco !== 'undefined' ? maxPreco : null;
         
         if (cleanMarca || cleanMinPotencia || cleanMaxPotencia || cleanMinPreco || cleanMaxPreco) {
-            console.log('📊 Buscando com filtros:', { marca: cleanMarca });
             const cars = await carModel.getCarsWithFilters(cleanMarca, cleanMinPotencia, cleanMaxPotencia, cleanMinPreco, cleanMaxPreco);
-            console.log(`✅ Encontrados ${cars.length} carros com filtros`);
             return res.status(200).json(cars || []);
         }
         
-        console.log('📊 Buscando todos os carros (sem filtros)');
         const cars = await carModel.getCars();
-        console.log(`✅ Encontrados ${cars.length} carros no total`);
         res.status(200).json(cars || []);
     } catch (error) {
-        console.error('❌ Erro ao buscar carros:', error);
         res.status(500).json({ message: "Erro ao buscar carros", error: error.message });
     }
 };
@@ -53,7 +38,6 @@ const createCar = async (req, res) => {
     try {
         const { imagem, marca, modelo, ano, potencia, torque, peso, zero_cem, preco } = req.body;
         
-        // Validações básicas
         if (!marca || !modelo || !ano || !potencia || !torque || !peso || !zero_cem || !preco) {
             return res.status(400).json({ message: "Todos os campos obrigatórios devem ser preenchidos" });
         }
@@ -69,7 +53,6 @@ const updateCar = async (req, res) => {
     try {
         const { imagem, marca, modelo, ano, potencia, torque, peso, zero_cem, preco } = req.body;
         
-        // Validações básicas
         if (!marca || !modelo || !ano || !potencia || !torque || !peso || !zero_cem || !preco) {
             return res.status(400).json({ message: "Todos os campos obrigatórios devem ser preenchidos" });
         }
@@ -100,9 +83,7 @@ const getCarsByMarca = async (req, res) => {
     try {
         const marca = req.params.marca;
         
-        // Validar marca
         if (!marca || marca === 'null' || marca === 'undefined' || marca.trim() === '') {
-            console.log('⚠️ GET /api/cars/marca/:marca - Marca inválida:', marca);
             return res.status(400).json({ 
                 message: "Marca não fornecida ou inválida",
                 marca_recebida: marca,
@@ -110,13 +91,9 @@ const getCarsByMarca = async (req, res) => {
             });
         }
         
-        console.log(`🔍 GET /api/cars/marca/${marca}`);
         const cars = await carModel.getCarsByMarca(marca.trim());
-        console.log(`✅ Encontrados ${cars.length} carros da marca ${marca}`);
-        
         res.status(200).json(cars);
     } catch (error) {
-        console.error('❌ Erro ao buscar carros por marca:', error);
         res.status(500).json({ message: "Erro ao buscar carros por marca", error: error.message });
     }
 };
@@ -129,7 +106,6 @@ const getMarcas = async (req, res) => {
         }
         res.status(200).json(marcas);
     } catch (error) {
-        console.error('Erro ao buscar marcas:', error);
         res.status(500).json({ message: "Erro ao buscar marcas" });
     }
 };
@@ -142,7 +118,6 @@ const getCategories = async (req, res) => {
         }
         res.status(200).json(categories);
     } catch (error) {
-        console.error('Erro ao buscar categorias:', error);
         res.status(500).json({ message: "Erro ao buscar categorias" });
     }
 };

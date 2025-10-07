@@ -84,7 +84,7 @@ const getMarcas = async () => {
 
 const getCategories = async () => {
     try {
-        // Fazer consultas separadas para cada categoria
+
         const economico = await pool.query('SELECT COUNT(*) as total FROM cars WHERE preco < 150000');
         const medio = await pool.query('SELECT COUNT(*) as total FROM cars WHERE preco >= 150000 AND preco < 400000');
         const premium = await pool.query('SELECT COUNT(*) as total FROM cars WHERE preco >= 400000 AND preco < 800000');

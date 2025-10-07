@@ -11,14 +11,12 @@ const authenticateToken = async (req, res, next) => {
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET || 'turbox_secret_key');
-        
-        // Verificar se o usuário ainda existe
+
         const user = await userModel.getUser(decoded.id);
         if (!user) {
             return res.status(401).json({ message: 'Usuário não encontrado' });
         }
 
-        // Adicionar informações do usuário à requisição
         req.user = {
             id: decoded.id,
             email: decoded.email,
@@ -52,7 +50,7 @@ const optionalAuth = async (req, res, next) => {
 
         next();
     } catch (error) {
-        // Se há erro no token, apenas continue sem autenticação
+
         next();
     }
 };

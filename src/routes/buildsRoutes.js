@@ -13,7 +13,6 @@ const {
     removeUpgradeFromBuild 
 } = require('../controllers/buildsController');
 
-
 /**
  * @swagger
  * /api/builds:
@@ -25,7 +24,6 @@ const {
  *         description: Lista de builds
  */
 router.get('/builds', getAllBuilds);
-
 
 /**
  * @swagger
@@ -46,7 +44,6 @@ router.get('/builds', getAllBuilds);
  */
 router.get('/builds/user/:userId', getBuildsByUser);
 
-
 /**
  * @swagger
  * /api/car/{carId}:
@@ -65,7 +62,6 @@ router.get('/builds/user/:userId', getBuildsByUser);
  *         description: Lista de builds do carro
  */
 router.get('/car/:carId', getBuildsByCar);
-
 
 /**
  * @swagger
@@ -88,7 +84,6 @@ router.get('/car/:carId', getBuildsByCar);
  */
 router.get('/builds/:id', getBuild);
 
-
 /**
  * @swagger
  * /api/builds/{id}/upgrades:
@@ -107,7 +102,6 @@ router.get('/builds/:id', getBuild);
  *         description: Lista de upgrades da build
  */
 router.get('/builds/:id/upgrades', getBuildUpgrades);
-
 
 /**
  * @swagger
@@ -140,7 +134,6 @@ router.get('/builds/:id/upgrades', getBuildUpgrades);
  */
 router.post('/builds', createBuild);
 
-
 /**
  * @swagger
  * /api/builds/{id}/upgrades:
@@ -168,7 +161,6 @@ router.post('/builds', createBuild);
  *         description: Upgrade adicionado à build
  */
 router.post('/:id/upgrades', addUpgradeToBuild);
-
 
 /**
  * @swagger
@@ -210,7 +202,6 @@ router.post('/:id/upgrades', addUpgradeToBuild);
  */
 router.put('/builds/:id', updateBuild);
 
-
 /**
  * @swagger
  * /api/builds/{id}/upgrades/{upgradeId}:
@@ -237,7 +228,6 @@ router.put('/builds/:id', updateBuild);
  *         description: Build ou upgrade não encontrado
  */
 router.delete('/builds/:id/upgrades/:upgradeId', removeUpgradeFromBuild);
-
 
 /**
  * @swagger

@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { getAllCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, getMarcas, getCategories } = require('../controllers/carsController');
 
-
 /**
  * @swagger
  * /api/cars:
@@ -41,7 +40,6 @@ const { getAllCars, getCar, createCar, updateCar, deleteCar, getCarsByMarca, get
  */
 router.get('/cars', getAllCars);
 
-
 /**
  * @swagger
  * /api/cars/marcas:
@@ -54,7 +52,6 @@ router.get('/cars', getAllCars);
  */
 router.get('/cars/marcas', getMarcas);
 
-
 /**
  * @swagger
  * /api/cars/categories:
@@ -66,7 +63,6 @@ router.get('/cars/marcas', getMarcas);
  *         description: Lista de categorias
  */
 router.get('/cars/categories', getCategories);
-
 
 /**
  * @swagger
@@ -86,7 +82,6 @@ router.get('/cars/categories', getCategories);
  *         description: Lista de carros da marca
  */
 router.get('/cars/marca/:marca', getCarsByMarca);
-
 
 /**
  * @swagger
@@ -108,7 +103,6 @@ router.get('/cars/marca/:marca', getCarsByMarca);
  *         description: Carro não encontrado
  */
 router.get('/cars/:id', getCar);
-
 
 /**
  * @swagger
@@ -146,7 +140,6 @@ router.get('/cars/:id', getCar);
  *         description: Carro criado
  */
 router.post('/cars', createCar);
-
 
 /**
  * @swagger
@@ -193,7 +186,6 @@ router.post('/cars', createCar);
  *         description: Carro não encontrado
  */
 router.put('/cars/:id', updateCar);
-
 
 /**
  * @swagger

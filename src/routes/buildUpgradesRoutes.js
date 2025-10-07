@@ -10,7 +10,6 @@ const {
     getPopularUpgrades 
 } = require('../controllers/buildUpgradesController');
 
-
 /**
  * @swagger
  * /api/buildUpgrades:
@@ -23,7 +22,6 @@ const {
  */
 router.get('/buildUpgrades', getAllBuildUpgrades);
 
-
 /**
  * @swagger
  * /api/buildUpgrades/stats:
@@ -35,7 +33,6 @@ router.get('/buildUpgrades', getAllBuildUpgrades);
  *         description: Estatísticas das associações
  */
 router.get('/buildUpgrades/stats', getBuildUpgradeStats);
-
 
 /**
  * @swagger
@@ -54,7 +51,6 @@ router.get('/buildUpgrades/stats', getBuildUpgradeStats);
  *         description: Lista de upgrades populares
  */
 router.get('/buildUpgrades/popular', getPopularUpgrades);
-
 
 /**
  * @swagger
@@ -75,7 +71,6 @@ router.get('/buildUpgrades/popular', getPopularUpgrades);
  */
 router.get('/buildUpgrades/build/:buildId', getBuildUpgradesByBuild);
 
-
 /**
  * @swagger
  * /api/buildUpgrades/upgrade/{upgradeId}:
@@ -94,7 +89,6 @@ router.get('/buildUpgrades/build/:buildId', getBuildUpgradesByBuild);
  *         description: Lista de builds que usam o upgrade
  */
 router.get('/buildUpgrades/upgrade/:upgradeId', getBuildUpgradesByUpgrade);
-
 
 /**
  * @swagger
@@ -118,7 +112,6 @@ router.get('/buildUpgrades/upgrade/:upgradeId', getBuildUpgradesByUpgrade);
  *         description: Upgrade adicionado à build
  */
 router.post('/buildUpgrades', addBuildUpgrade);
-
 
 /**
  * @swagger
