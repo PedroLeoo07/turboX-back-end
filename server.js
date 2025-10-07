@@ -34,6 +34,37 @@ app.get("/api/health", (req, res) => {
     });
 });
 
+// Endpoint de debug para verificar o que o front-end está enviando
+app.get("/api/debug/params", (req, res) => {
+    const marcaQuery = req.query.marca;
+    
+    console.log('🔍 DEBUG PARAMS:', {
+        query: req.query,
+        marca: marcaQuery,
+        tipo: typeof marcaQuery,
+        isNull: marcaQuery === 'null',
+        isUndefined: marcaQuery === 'undefined' || marcaQuery === undefined,
+        isEmpty: marcaQuery === ''
+    });
+    
+    res.json({
+        message: "Debug de parâmetros",
+        query_params: req.query,
+        marca_analysis: {
+            value: marcaQuery,
+            type: typeof marcaQuery,
+            is_string_null: marcaQuery === 'null',
+            is_undefined: marcaQuery === 'undefined' || marcaQuery === undefined,
+            is_empty: marcaQuery === '',
+            valid: marcaQuery && marcaQuery !== 'null' && marcaQuery !== 'undefined' && marcaQuery !== ''
+        },
+        suggestion: !marcaQuery || marcaQuery === 'null' || marcaQuery === 'undefined'
+            ? "⚠️ PROBLEMA: A marca não está sendo enviada corretamente pelo front-end"
+            : "✅ Marca recebida corretamente",
+        example_correct_url: "http://localhost:3001/api/cars?marca=Honda"
+    });
+});
+
 // Rotas
 app.use("/api", authRoutes);
 app.use("/api", usersRoutes);
